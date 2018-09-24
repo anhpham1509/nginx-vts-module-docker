@@ -11,12 +11,15 @@ jobs:
       - run:
           name: Setup bot user for git
           command: |
+            apk add -y git,yarn
             git remote add pushback https://${GITHUB_TOKEN}@github.com/anhpham1509/nginx-vts-module-docker.git
             git config --global user.name ${BOT_NAME}
             git config --global user.email ${BOT_EMAIL}
       - run:
           name: Check gsed and install yarn
-          command: sed --version && apk add yarn && yarn global add markdown-toc
+          command: |
+            sed --version
+            yarn global add markdown-toc
       - run:
           name: Update Dockerfile and configurations
           command: make update
