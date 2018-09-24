@@ -20,10 +20,7 @@
     ```bash
     make gnu-sed
     ```
-* [blackbox](https://github.com/StackExchange/blackbox#installation-instructions)
 * [Docker](https://www.docker.com/get-started)
-
-* [gcloud v211.0.0](https://cloud.google.com/sdk/docs/downloads-versioned-archives)
 
 ## Update markdown TOC
 
