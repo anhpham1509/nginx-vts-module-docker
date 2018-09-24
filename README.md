@@ -1,6 +1,13 @@
 # Nginx Docker image with vts module
 
 <!-- toc -->
+
+* [Features](#features)
+* [Development tools](#development-tools)
+* [Update markdown TOC](#update-markdown-toc)
+* [Update Docker image configurations](#update-docker-image-configurations)
+* [Push image to Docker Hub](#push-image-to-docker-hub)
+
 <!-- tocstop -->
 
 ## Features
