@@ -9,7 +9,17 @@ jobs:
     steps:
       - run:
           name: Install CI tools
-          command: apk add --no-cache ca-certificates git openssh make bash sed yarn docker
+          command: |
+            apk add --no-cache \
+              ca-certificates \
+              git \
+              openssh \
+              make \
+              bash \
+              sed \
+              yarn \
+              docker
+            yarn global add markdown-toc
       - checkout
       - run:
           name: Setup bot user for git
@@ -18,16 +28,19 @@ jobs:
             git config --global user.name ${BOT_NAME}
             git config --global user.email ${BOT_EMAIL}
       - run:
-          name: Check gsed and install yarn
-          command: |
-            sed --version
-            yarn global add markdown-toc
-      - run:
           name: Update Dockerfile and configurations
-          command: make update
+          command: |
+            make update
+            scripts/ci_commit_changes.sh "nginx configurations"
       - run:
           name: Update Markdown TOC
-          command: make md-toc
+          command: |
+            make md-toc
+            scripts/ci_commit_changes.sh "markdown toc"
+      - run:
+          name: Pushback changes
+          command: |
+            scripts/ci_push_changes.sh
       - setup_remote_docker:
           docker_layer_caching: true
       - run:

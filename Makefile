@@ -36,10 +36,10 @@ md-toc:
 
 .PHONY: login
 login:
-	scripts/docker_login.sh
+	scripts/ci_docker_login.sh
 
 .PHONY: push
 push: login
-	scripts/docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):$(GIT_SHA)
-	scripts/docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):$(NGINX_VERSION)-$(VTS_MODULE_VERSION)
-	scripts/docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):latest
+	scripts/ci_docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):$(GIT_SHA)
+	scripts/ci_docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):$(NGINX_VERSION)-$(VTS_MODULE_VERSION)
+	scripts/ci_docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):latest
