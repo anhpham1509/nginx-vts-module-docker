@@ -7,9 +7,9 @@ jobs:
       - image: circleci/golang:1.11-stretch-node
     working_directory: /go/src/github.com/anhpham1509/nginx-vts-module-docker
     steps:
-      - run:
-          name: Install CI tools
-          command: apk add --no-cache sed yarn
+      # - run:
+      #     name: Install CI tools
+      #     command: apk add --no-cache sed yarn
       - checkout
       - run:
           name: Setup bot user for git
