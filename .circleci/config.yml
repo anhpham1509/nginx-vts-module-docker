@@ -7,11 +7,13 @@ jobs:
       - image: alpine:3.8
     working_directory: /nginx-vts-module-docker
     steps:
+      - run:
+          name: Install CI tools
+          command: apk add --no-cache ca-certificates git make bash sed yarn
       - checkout
       - run:
           name: Setup bot user for git
           command: |
-            apk add --no-cache git yarn make bash
             git remote add pushback https://${GITHUB_TOKEN}@github.com/anhpham1509/nginx-vts-module-docker.git
             git config --global user.name ${BOT_NAME}
             git config --global user.email ${BOT_EMAIL}
