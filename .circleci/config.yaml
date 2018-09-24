@@ -1,0 +1,36 @@
+version: 2
+machine:
+  timezone: Europe/Helsinki
+jobs:
+  build:
+    docker:
+      - image: alpine:3.8
+    working_directory: /nginx-vts-module-docker
+    steps:
+      - checkout
+      - run:
+          name: Setup bot user for git
+          command: |
+            git remote add pushback https://${GITHUB_TOKEN}@github.com/anhpham1509/nginx-vts-module-docker.git
+            git config --global user.name ${BOT_NAME}
+            git config --global user.email ${BOT_EMAIL}
+      - run:
+          name: Check gsed and install yarn
+          command: sed --version && apk add yarn && yarn global add markdown-toc
+      - run:
+          name: Update Dockerfile and configurations
+          command: make update
+      - run:
+          name: Update Markdown TOC
+          command: make md-toc
+      - run:
+          name: Build Docker image
+          command: make build
+      - run:
+          name: Push to Docker Hub
+          command: make push
+workflows:
+  version: 2
+  nginx-vts-module:
+    jobs:
+      - build

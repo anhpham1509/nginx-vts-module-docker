@@ -28,3 +28,7 @@ run:
 		--name nginx-vts \
 		-p 8080:80 \
 		-d
+
+.PHONY: md-toc
+md-toc:
+	find . -iname "*.md" -exec markdown-toc --bullets "*" -i {} \;
