@@ -1,4 +1,6 @@
-# Nginx Docker image with vts module
+# [Nginx Docker image with vts module](https://hub.docker.com/r/anhpham1509/nginx-vts-module/)
+
+[![CircleCI](https://circleci.com/gh/anhpham1509/nginx-vts-module-docker/tree/master.svg?style=svg)](https://circleci.com/gh/anhpham1509/nginx-vts-module-docker/tree/master)
 
 <!-- toc -->
 
@@ -12,7 +14,7 @@
 
 ## Features
 
-* Nginx Docker image including vts module
+* Nginx Docker image including [vts module]((https://github.com/vozlt/nginx-module-vts))
 
 ## Development tools
 
