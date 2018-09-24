@@ -20,6 +20,7 @@ build:
 	docker build . \
 		--tag $(DOCKER_REPO)/$(DOCKER_IMAGE):$(GIT_SHA) \
 		--tag $(DOCKER_REPO)/$(DOCKER_IMAGE):$(NGINX_VERSION)-$(VTS_MODULE_VERSION) \
+		--tag $(DOCKER_REPO)/$(DOCKER_IMAGE):latest \
 		--file Dockerfile
 
 .PHONY: run
@@ -32,3 +33,13 @@ run:
 .PHONY: md-toc
 md-toc:
 	find . -iname "*.md" -exec markdown-toc --bullets "*" -i {} \;
+
+.PHONY: login
+login:
+	scripts/docker_login.sh
+
+.PHONY: push
+push: login
+	scripts/docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):$(GIT_SHA)
+	scripts/docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):$(NGINX_VERSION)-$(VTS_MODULE_VERSION)
+	scripts/docker_push.sh $(DOCKER_REPO)/$(DOCKER_IMAGE):latest
