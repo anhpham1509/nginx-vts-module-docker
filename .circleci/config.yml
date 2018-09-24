@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Setup bot user for git
           command: |
-            apk add git yarn make
+            apk add --no-cache git yarn make bash
             git remote add pushback https://${GITHUB_TOKEN}@github.com/anhpham1509/nginx-vts-module-docker.git
             git config --global user.name ${BOT_NAME}
             git config --global user.email ${BOT_EMAIL}
