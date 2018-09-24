@@ -19,6 +19,7 @@ update:
 build:
 	docker build . \
 		--tag $(DOCKER_REPO)/$(DOCKER_IMAGE):$(GIT_SHA) \
+		--tag $(DOCKER_REPO)/$(DOCKER_IMAGE):$(NGINX_VERSION)-$(VTS_MODULE_VERSION) \
 		--file Dockerfile
 
 .PHONY: run
